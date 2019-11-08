@@ -1,0 +1,7 @@
+# MacOS stuff
+.DS_Store
+.AppleDouble
+.LSOverrides
+
+# vagrant stuff
+.vagrant/
