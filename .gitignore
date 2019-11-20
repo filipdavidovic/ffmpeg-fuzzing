@@ -5,3 +5,7 @@
 
 # vagrant stuff
 .vagrant/
+
+findings/
+tmp/
+stat.txt
