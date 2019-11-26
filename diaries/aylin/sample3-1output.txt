@@ -1,0 +1,28 @@
+ffmpeg version N-95760-g315a449 Copyright (c) 2000-2019 the FFmpeg developers
+  built with gcc 7 (Ubuntu 7.4.0-1ubuntu1~18.04.1)
+  configuration: --prefix=/home/vagrant/bin
+  libavutil      56. 36.100 / 56. 36.100
+  libavcodec     58. 62.100 / 58. 62.100
+  libavformat    58. 35.100 / 58. 35.100
+  libavdevice    58.  9.100 / 58.  9.100
+  libavfilter     7. 66.100 /  7. 66.100
+  libswscale      5.  6.100 /  5.  6.100
+  libswresample   3.  6.100 /  3.  6.100
+[xa @ 0x5566088cf700] Estimating duration from bitrate, this may be inaccurate
+Guessed Channel Layout for Input Stream #0.0 : mono
+Input #0, xa, from '../../testcases/sample3-1.xa':
+  Duration: 00:00:02.46, start: 0.000000, bitrate: 94 kb/s
+    Stream #0:0: Audio: adpcm_ea_maxis_xa, 22050 Hz, mono, s16, 94 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (adpcm_ea_maxis_xa (native) -> aac (native))
+Press [q] to stop, [?] for help
+Output #0, mp4, to 'sample3-1.mp4':
+  Metadata:
+    encoder         : Lavf58.35.100
+    Stream #0:0: Audio: aac (LC) (mp4a / 0x6134706D), 22050 Hz, mono, fltp, 69 kb/s
+    Metadata:
+      encoder         : Lavc58.62.100 aac
+../../testcases/sample3-1.xa: corrupt input packet in stream 0
+size=      23kB time=00:00:02.46 bitrate=  76.1kbits/s speed=38.9x    
+video:0kB audio:22kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 4.529834%
+[aac @ 0x5566088e8e00] Qavg: 198.673
