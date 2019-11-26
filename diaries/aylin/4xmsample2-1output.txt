@@ -8,4 +8,31 @@ ffmpeg version N-95760-g315a449 Copyright (c) 2000-2019 the FFmpeg developers
   libavfilter     7. 66.100 /  7. 66.100
   libswscale      5.  6.100 /  5.  6.100
   libswresample   3.  6.100 /  3.  6.100
-../../testcases/4xmsample2-1.mmf: No such file or directory
+[4xm @ 0x55d8f71b9700] Estimating duration from bitrate, this may be inaccurate
+Guessed Channel Layout for Input Stream #0.1 : stereo
+Input #0, 4xm, from '../../testcases/4xmsample2-1.4xm':
+  Duration: 00:00:08.20, start: 0.000000, bitrate: 1408 kb/s
+    Stream #0:0: Video: 4xm, rgb565le, 640x320, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:1: Audio: adpcm_4xm, 44100 Hz, stereo, s16p, 1411 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (4xm (native) -> mpeg4 (native))
+  Stream #0:1 -> #0:1 (adpcm_4xm (native) -> aac (native))
+Press [q] to stop, [?] for help
+[4xm @ 0x55d8f71bd900] error dc run != 0
+[4xm @ 0x55d8f71bd900] decode i frame failed
+Error while decoding stream #0:0: Invalid data found when processing input
+Output #0, mp4, to '4xmsample2-1.mp4':
+  Metadata:
+    encoder         : Lavf58.35.100
+    Stream #0:0: Video: mpeg4 (mp4v / 0x7634706D), yuv420p, 640x320, q=2-31, 200 kb/s, 30 fps, 15360 tbn, 30 tbc
+    Metadata:
+      encoder         : Lavc58.62.100 mpeg4
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
+    Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s
+    Metadata:
+      encoder         : Lavc58.62.100 aac
+frame=    0 fps=0.0 q=0.0 Lsize=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+[aac @ 0x55d8f71dd5c0] Qavg: -nan
+Conversion failed!
