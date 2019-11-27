@@ -39,16 +39,22 @@ apt-get install -y -qq \
   wget \
   zlib1g-dev \
   nasm \
-  gcc-multilib \ # needed to compile 32-bit binaries
-  g++-multilib \
-  libsdl1.2-dev \
-  libsdl2-dev
+  yasm \
+  git \
+  pkg-config
+#   gcc-multilib \ # needed to compile 32-bit binaries
+#   g++-multilib \
+#   libsdl1.2-dev \
+#   libsdl2-dev
 echo_info "[+] Installing American Fuzzy Loop"
-apt-get install -y -qq afl
+git clone https://github.com/google/AFL.git afl
+cd afl
+make
+make install
 echo_info "[+] Installing clang"
 apt-get install -y -qq clang
 
-echo_info "[+] Compiling ffmpeg to use with AFL"
+echo_info "[+] Compiling ffmpeg to use with ASAN"
 mkdir /home/vagrant/bin /home/vagrant/ffmpeg_sources
 cd /home/vagrant/ffmpeg_sources
 echo_info " [-] Download current ffmpeg source"
@@ -57,27 +63,9 @@ echo_info " [-] Unpacking ffmpeg source"
 tar xjvf ffmpeg-snapshot.tar.bz2
 cd ffmpeg
 echo_info " [-] Configuring ffmpeg install"
-./configure --prefix=/home/vagrant/bin
-echo_info " [-] Compiling ffmpeg with afl-gcc"
-make CC=afl-gcc
-echo_info " [-] Installing ffmpeg"
-make install
-echo core >/proc/sys/kernel/core_pattern # needed for AFL
-
-echo_info "[+] Compiling ffmpeg to use with ASAN"
-mkdir /home/vagrant/bin_asan /home/vagrant/ffmpeg_sources_asan
-cd /home/vagrant/ffmpeg_sources_asan
-echo_info " [-] Download current ffmpeg source"
-wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
-echo_info " [-] Unpacking ffmpeg source"
-tar xjvf ffmpeg-snapshot.tar.bz2
-cd ffmpeg
-echo_info " [-] Configuring ffmpeg install"
-# ./configure --cc=clang --cxx=clang++ --extra-cflags=”-O1 -fno-omit-frame-pointer -g” --extra-cxxflags=”-O1 -fno-omit-frame-pointer -g” --extra-ldflags=”-fsanitize=address” --enable-debug --prefix=/home/vagrant/bin_asan
-AFL_USE_ASAN=1 ./configure --prefix=/home/vagrant/bin_asan --arch=x86_32 --enable-cross-compile
+AFL_USE_ASAN=1 ./configure --cc=/usr/local/bin/afl-clang --prefix=/home/vagrant/bin
 echo_info " [-] Compiling ffmpeg"
-# make CC=afl-gcc
-AFL_USE_ASAN=1 make CC=afl-gcc CFLAGS="-m32 -O1 -W -Wall -pedantic -std=c99"
+AFL_USE_ASAN=1 CC=afl-clang CXX=afl-g++ make
 echo_info " [-] Installing ffmpeg"
 make install
 
