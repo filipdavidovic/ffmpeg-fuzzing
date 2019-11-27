@@ -42,6 +42,9 @@ apt-get install -y -qq \
   yasm \
   git \
   pkg-config
+apt-get install -y -qq yasm \
+  git \
+  pkg-config
 #   gcc-multilib \ # needed to compile 32-bit binaries
 #   g++-multilib \
 #   libsdl1.2-dev \
