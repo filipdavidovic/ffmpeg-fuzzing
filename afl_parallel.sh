@@ -17,12 +17,12 @@ if [[ $WORKER_ID == 1 ]]; then
         -f $FILE \
         -o /vagrant/findings \
         -M fuzzer$WORKER_ID \
-        /home/vagrant/bin/bin/ffmpeg -i $FILE /tmp/outfile.mp4
+        /home/vagrant/bin/bin/ffmpeg -y -i $FILE /tmp/outfile.mp4
 else
     echo "Starting slave"
     afl-fuzz -m 500 -i $TESTCASES \
         -f $FILE \
         -o /vagrant/findings \
         -S fuzzer$WORKER_ID \
-        /home/vagrant/bin/bin/ffmpeg -i $FILE /tmp/outfile.mp4
+        /home/vagrant/bin/bin/ffmpeg -y -i $FILE /tmp/outfile.mp4
 fi
